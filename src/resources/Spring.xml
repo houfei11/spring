@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--
+    xmlns 即 xml namespace xml 使用的命名空间
+    xmlns:xsi 即 xml schema instance xml 遵守的具体规范
+    xsi:schemaLocation 本文档 xml 遵守的规范 官方指定
+    -->
+    <bean id="helloService" class="com.imooc.HelloService"></bean>
+    <bean id="User" class="com.imooc.User" scope="prototype" init-method="init" destroy-method="destroy">
+        <property name="name" value="每一天"/>
+        <property name="age" value="22"/>
+        <property name="sex" value="男"/>
+    </bean>
+    <bean id="HelloWorld" class="com.imooc.HelloWorld">
+        <property name="message1" value="韩语"/>
+        <property name="message2" value="英语"/>
+    </bean>
+    <!--<bean id="HelloChina" class="com.imooc.HelloChina" parent="HelloWorld">-->
+        <!--<property name="message1" value="广东话"/>-->
+        <!--&lt;!&ndash;<property name="message2" value="陕西话"/>&ndash;&gt;-->
+        <!--<property name="message3" value="河南话"/>-->
+    <!--</bean>-->
+    <bean id="beanTeamplate" abstract="true">
+        <property name="message1" value="韩语"/>
+        <property name="message2" value="英语"/>
+    </bean>
+    <bean id="HelloChina" class="com.imooc.HelloChina" parent="beanTeamplate">
+        <property name="message1" value="广东话"/>
+        <!--<property name="message2" value="陕西话"/>-->
+        <property name="message3" value="河南话"/>
+    </bean>
+    <bean id="TextEditor" class="com.imooc.TextEditor">
+        <property name="spellChecker">
+            <bean id="spellChecker" class="com.imooc.SpellChecker"/>
+        </property>
+    </bean>
+</beans>
